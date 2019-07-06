@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Author: Derfredy | @4llfr33d0m:matrix.org
+#
+# Shows keyname
+CLI=kvcli
+
+keyname=`$CLI keys list | awk 'FNR==2{print $1}'`
+
+echo "keyname = $keyname"
+
