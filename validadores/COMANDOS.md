@@ -35,8 +35,12 @@ kvcli tx stake create-validator --amount=5STAKE --pubkey=$(kvd tendermint show-v
 ```
 * **Edit validator description:**
 ```
-kvcli tx stake edit-validator --moniker="choose a moniker" --website="https://kava.io" --identity=6A2265E29A4CBC8E --details="To infinity and beyond!" --chain-id=<chain_id> --from=<key_name> --commission-rate="0.10"
+kvcli tx staking edit-validator --commision-rate="<new_rate_to_apply>" --fees="<new-fees-to-apply>" --moniker="<your_moniker>" --website="<your_website>" --identity="<keybase_sig>" --details="<your_description>" --chain-id="<chain_id>" --from="<key_name>" 
 ```
+  * Helpful Info:
+  1. Every parameter that you omit will simply remain the same.
+  2. The 'identity' parameter is the pgp key you generate inside keybase. ("Add PGP key").
+  3. The 'from' parameter is the name of your account you get whenever you do `kvcli keys list`.
 
 * **View validator description:**
 ```
