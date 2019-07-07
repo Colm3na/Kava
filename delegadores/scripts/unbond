@@ -4,14 +4,15 @@
 #  Made with love in Colm3naSVQ by :           #
 #                                              #
 #  @wimel85(wiπΞl)->@cosmaut:matrix.org        #
-#  @DerFredy -> @4llfr33d0m:matrix.org         #
+#  @DerFredy -> @derfredy:matrix.org           #
+#  @Bitcoinera -> @bitcoinera:matrix.org       # 
 #                                              #
 ################################################
 # Script para hacer unbond
 #
 # Comando:
 # $CLI tx staking unbond \
-#   --validator=<account_$PROJECTval> \
+#   --validator=<account_$PROJECT> \
 #   --shares-amount=12.1 \
 #   --from=<key_name> \
 #   --chain-id=<chain_id>
