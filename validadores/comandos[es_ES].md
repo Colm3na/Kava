@@ -35,7 +35,7 @@ kvcli tx stake create-validator --amount=5STAKE --pubkey=$(kvd tendermint show-v
 
 * **Editar la descripción del validador:**
 ```
-kvcli tx stake edit-validator --moniker="choose a moniker" --website="https://kava.io" --identity=6A2265E29A4CBC8E --details="To infinity and beyond!" --chain-id=<chain_id> --from=<key_name> --commission-rate="0.10"
+kvcli tx staking edit-validator --commision-rate="<new_rate_to_apply>" --fees="<new-fees-to-apply>" --moniker="<your_moniker>" --website="<your_website>" --identity="<keybase_sig>" --details="<your_description>" --chain-id="<chain_id>" --from="<key_name>"
 ```
 
   * Información útil:
