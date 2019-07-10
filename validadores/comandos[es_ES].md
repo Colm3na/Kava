@@ -1,6 +1,6 @@
-## configuración para el validador _(puedes encontrar estos tips en la [documentacion](https://kava.network/docs/validators/validator-setup.html#validator-setup) de kava y el cliente [Gaia](https://kava.network/docs/gaia/kvcli.html#gaia-cli))_:
+## configuración para el validador _(puedes encontrar estos tips en la [documentacion](https://kava.network/docs/validators/validator-setup.html#validator-setup) de kava y el cliente [Kvcli](https://kava.network/docs/gaia/kvcli.html#gaia-cli))_:
 
-## Comandos para `gaia-9002` & `Game of Stakes`:
+## Comandos para `kava-testnet-1.1`:
 * **Inicio de un nuevo nodo:**
 
 ```
@@ -22,9 +22,9 @@ kvd start --trace --log_level "*:debug"
 kvcli status
 ```
 
-* **Generar el _`gentx`_ para `GoS` _(recuerda modificar los valores)_**:
+* **Generar el _`gentx`_ para `kava-testnet-1.1` _(recuerda modificar los valores)_**:
 ```
-kvd gentx --amount 10000STAKE --commission-rate "0.10" --commission-max-rate "1.00" --commission-max-change-rate "0.01" --pubkey $(kvd tendermint show-validator) --name $(kvcli keys list | awk 'FNR==2{print $1}')
+kvd gentx --amount 1000000000000ukva --commission-rate "0.10" --commission-max-rate "1.00" --commission-max-change-rate "0.01" --pubkey $(kvd tendermint show-validator) --name $(kvcli keys list | awk 'FNR==2{print $1}')
 ```
 
 # Configuración del validador _(recuerda modificar los valores)_:
@@ -85,7 +85,7 @@ kvcli query slashing signing-info <validator-pubkey> --chain-id=<chain_id>
 
 * **_Unjail_ validador:**
 ```
-kvcli tx slashing unjail --from=$(kvcli keys list | awk 'FNR==2{print $1}') --chain-id=game_of_stakes_5 --trust-node=true
+kvcli tx slashing unjail --from=$(kvcli keys list | awk 'FNR==2{print $1}') --chain-id=<chain_id> --trust-node=true
 ```
 
 * **Confirmar que el validador está funcionando:**
@@ -100,12 +100,12 @@ kvcli query account <account_kava>
 
 * **Enviar tokens:**
 ```
-kvcli tx send --amount=10STAKE --chain-id=<chain_id> --from=<key_name> --to=<destination_kava>
+kvcli tx send --amount=10ukva --chain-id=<chain_id> --from=<key_name> --to=<destination_kava>
 ```
 
 * **Vincular tokens:**
 ```
-kvcli tx stake delegate --amount=10STAKE --validator=<validator> --from=<key_name> --chain-id=<chain_id>
+kvcli tx stake delegate --amount=10ukva --validator=<validator> --from=<key_name> --chain-id=<chain_id>
 ```
 
 * **Ver información del validador:**
@@ -166,7 +166,7 @@ kvcli query stake parameters
 # Governanza:
 * **Crear una propuesta de gobernanza:**
 ```
-kvcli tx gov submit-proposal --title=<title> --description=<description> --type=<Text/ParameterChange/SoftwareUpgrade> --deposit=<40STAKE> --from=<name> --chain-id=<chain_id>
+kvcli tx gov submit-proposal --title=<title> --description=<description> --type=<Text/ParameterChange/SoftwareUpgrade> --deposit=<10ukva> --from=<name> --chain-id=<chain_id>
 ```
 
 * **Consulta de propuestas _(una vez creadas)_:**
@@ -179,9 +179,9 @@ kvcli query gov proposal --proposal-id=<proposal_id>
 kvcli query gov proposals
 ```
 
-* **Aumento del depósito de las propuestas _(por defecto `10STAKE`)_:**
+* **Aumento del depósito de las propuestas _(por defecto `10ukva`)_:**
 ```
-kvcli tx gov deposit --proposal-id=<proposal_id> --deposit=<200STAKE> --from=<name> --chain-id=<chain_id>
+kvcli tx gov deposit --proposal-id=<proposal_id> --deposit=<10ukva> --from=<name> --chain-id=<chain_id>
 ```
 
 * **Consultar todos los depósitos presentados _(una vez creada una nueva propuesta)_:**
