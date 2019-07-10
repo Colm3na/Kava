@@ -32,5 +32,5 @@ wget https://raw.githubusercontent.com/Kava-Labs/kava/tree/master/testnet-1.1/ge
 
 # Generate `gentx`:
 ```
-kvd gentx --amount 10000STAKE --commission-rate "0.10" --commission-max-rate "1.00" --commission-max-change-rate "0.01" --pubkey $(kvd tendermint show-validator) --name $(kvcli keys list | awk 'FNR==2{print $1}') 
+kvd gentx --amount 1000000000000ukva --commission-rate "0.10" --commission-max-rate "1.00" --commission-max-change-rate "0.01" --pubkey $(kvd tendermint show-validator) --name $(kvcli keys list | awk 'FNR==2{print $1}') 
 ```
