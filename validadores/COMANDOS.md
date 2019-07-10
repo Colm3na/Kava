@@ -1,6 +1,6 @@
-## configuración para el validador __(puedes encontrar estos tips en la [documentacion](https://kava.network/docs/validators/validator-setup.html#validator-setup) de kava y el cliente [Gaia](https://kava.network/docs/gaia/kvcli.html#gaia-cli))__:
+## Configuración para el validador __(puedes encontrar estos tips en la [documentacion](https://kava.network/docs/validators/validator-setup.html#validator-setup) de kava y el cliente [kvcli](https://kava.network/docs/gaia/kvcli.html#gaia-cli))__:
 
-## Comandos para `gaia-9002` & `Game of Stakes`:
+## Comandos para `kava-testnet-1.1`:
 
 * **Inicio de un nuevo nodo:**
 ```
@@ -22,15 +22,15 @@ kvd start --trace --log_level "*:debug"
 kvcli status
 ```
 
-* **Generar el `gentx` para `GoS`** (recuerda modificar los valores):
+* **Generar el `gentx`** (recuerda modificar los valores):
 ```
-kvd gentx --amount 10000STAKE --commission-rate "0.10" --commission-max-rate "1.00" --commission-max-change-rate "0.01" --pubkey $(kvd tendermint show-validator) --name $(kvcli keys list | awk 'FNR==2{print $1}')
+kvd gentx --amount 1000000000000ukva --commission-rate "0.10" --commission-max-rate "1.00" --commission-max-change-rate "0.01" --pubkey $(kvd tendermint show-validator) --name $(kvcli keys list | awk 'FNR==2{print $1}')
 ```
 
 # Setup Validator:
 * **Init validator:**
 ```
-kvcli tx stake create-validator --amount=5STAKE --pubkey=$(kvd tendermint show-validator) --moniker="choose a moniker" --chain-id=<chain_id> --from=<key_name> --commission-rate="0.10" --commission-max-rate="0.20" --commission-max-change-rate="0.01"
+kvcli tx stake create-validator --amount=10000ukva --pubkey=$(kvd tendermint show-validator) --moniker="choose a moniker" --chain-id=<chain_id> --from=<key_name> --commission-rate="0.10" --commission-max-rate="0.20" --commission-max-change-rate="0.01"
 
 ```
 * **Edit validator description:**
@@ -84,7 +84,7 @@ kvcli query slashing signing-info <validator-pubkey> --chain-id=<chain_id>
 
 * **Unjail validator:**
 ```
-kvcli tx slashing unjail --from=$(kvcli keys list | awk 'FNR==2{print $1}') --chain-id=game_of_stakes_5 --trust-node=true
+kvcli tx slashing unjail --from=$(kvcli keys list | awk 'FNR==2{print $1}') --chain-id=<chain-id> --trust-node=true
 ```
 
 * **confirm validator is running:**
@@ -104,7 +104,7 @@ kvcli tx send --amount=10STAKE --chain-id=<chain_id> --from=<key_name> --to=<des
 
 * **Bond tokens:**
 ```
-kvcli tx stake delegate --amount=10STAKE --validator=<validator> --from=<key_name> --chain-id=<chain_id>
+kvcli tx stake delegate --amount=10000ukva --validator=<validator> --from=<key_name> --chain-id=<chain_id>
 ```
 
 * **See information about a validator:**
@@ -166,7 +166,7 @@ kvcli query stake parameters
 
 * **Create a governance proposal:**
 ```
-kvcli tx gov submit-proposal --title=<title> --description=<description> --type=<Text/ParameterChange/SoftwareUpgrade> --deposit=<40STAKE> --from=<name> --chain-id=<chain_id>
+kvcli tx gov submit-proposal --title=<title> --description=<description> --type=<Text/ParameterChange/SoftwareUpgrade> --deposit=<10000ukva> --from=<name> --chain-id=<chain_id>
 ```
 
 * **Query proposals (once created):**
@@ -181,7 +181,7 @@ kvcli query gov proposals
 
 * **Increased deposit proposals (default `10STAKE`):**
 ```
-kvcli tx gov deposit --proposal-id=<proposal_id> --deposit=<200STAKE> --from=<name> --chain-id=<chain_id>
+kvcli tx gov deposit --proposal-id=<proposal_id> --deposit=<10000ukva> --from=<name> --chain-id=<chain_id>
 ```
 
 * **Query all deposits submited (once a new proposal is created):**
